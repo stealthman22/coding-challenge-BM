@@ -5,8 +5,8 @@
 // WILL RESULT IN A TEST FAILURE
 // /////////////////////////////////////////////////////////////////////////////
 
-const { Sequelize } = require('sequelize');
+const { Sequelize } = require("sequelize");
 
-const sequelize = new Sequelize('sqlite::memory:', { logging: false });
+const sequelize = new Sequelize("sqlite:./test-me.sqlite", { logging: false });
 
 export default sequelize;
