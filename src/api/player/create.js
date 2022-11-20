@@ -1,27 +1,27 @@
+// ---------------------------------------------------------------------------------------------
+// YOU CAN FREELY MODIFY THE CODE BELOW IN ORDER TO COMPLETE THE TASK
+// ---------------------------------------------------------------------------------------------
+
 import Player from "../../db/model/player";
 import PlayerSkill from "../../db/model/playerSkill";
 
 export default async (req, res) => {
+	const { name, position, playerSkills } = req.body;
 	try {
-		const { name, position, skill, value } = req.body;
 		const player = await Player.create(
 			{
 				name,
 				position,
-				playerSkills: [
-					{
-						skill,
-						value,
-					},
-				],
+				playerSkills,
 			},
-			{ include: PlayerSkill }
+			{
+				include: "playerSkills",
+			}
 		);
-
-		console.log(`Player created and saved`);
+		console.log(`Player created and saved!`);
 		res.json(player);
 	} catch (error) {
-		res.send(`This is the ${error.message}, and ${error.stack}`);
+		console.log(error.stack);
 	}
 };
 // { include: PlayerSkill }

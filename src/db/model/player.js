@@ -5,6 +5,7 @@
 
 import Sequelize from "sequelize";
 import database from "../index";
+import PlayerSkill from "./playerSkill";
 
 const Player = database.define(
 	"player",
@@ -17,6 +18,7 @@ const Player = database.define(
 		},
 		name: {
 			type: Sequelize.STRING(200),
+			allowNull: false,
 		},
 		position: {
 			type: Sequelize.STRING(200),
@@ -27,8 +29,15 @@ const Player = database.define(
 	}
 );
 
-Player.associate = (models) => {
-	models.Player.hasOne(models.PlayerSkill, { as: "playerSkills" });
-};
+Player.hasMany(PlayerSkill, {
+	// through: "players_skills",
+	as: "playerSkills",
+	timestamps: false,
+	foreignKey: false,
+	// attributes: { exclude: ["playerSkillId"] },
+});
+
+// Player.hasMany(PlayerSkill);
+// PlayerSkill.belongsTo(Player);
 
 export default Player;

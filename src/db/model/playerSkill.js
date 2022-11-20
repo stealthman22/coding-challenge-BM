@@ -27,8 +27,27 @@ const PlayerSkill = database.define(
 	}
 );
 
-PlayerSkill.associate = (models) => {
-	models.PlayerSkill.belongsTo(models.Player);
-};
-
 export default PlayerSkill;
+
+// Trying to set the accepted values for the skill field
+// validate: {
+// 	checkValue(value) {
+// 		if (
+// 			!value === "defense" ||
+// 			!value === "attack" ||
+// 			!value === "speed" ||
+// 			!value === "strength" ||
+// 			!value === "stamina"
+// 		) {
+// 			throw new Error(`Invalid skill`);
+// 		}
+// 	},
+// },
+
+// makes the field required
+// allowNull: false,
+
+// isIn: {
+// 	args: [['en', 'zh']],
+// 	msg: "Must be English or Chinese"
+// }
