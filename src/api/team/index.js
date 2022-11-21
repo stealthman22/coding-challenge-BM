@@ -4,8 +4,5 @@
 // ---------------------------------------------------------------------------------------------
 
 export default (app) => {
-  app.post(
-    `/team/process`,
-    require('./process').default
-  );
+	app.get(`/team/process`, require("./process").default);
 };

@@ -3,5 +3,5 @@
 // ---------------------------------------------------------------------------------------------
 
 export default async (req, res) => {
-  res.sendStatus(500);
-}
+	res.send(`This is the team route`);
+};

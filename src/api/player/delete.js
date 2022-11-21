@@ -11,13 +11,17 @@ export default async (req, res) => {
 		let player;
 		// finding the player by primary key seems to work better than findOne
 		if (requestedToken == token) {
-			player = await Player.findByPk(requestedId);
-			await player.destroy();
+			player = await Player.findByPk(requestedId, {
+				include: "playerSkills",
+			});
+			await player.destroy({
+				include: "playerSkills",
+			});
 		} else {
 			console.log(requestedToken);
 			console.log(`Token is wrong`);
 		}
-		console.log(`The use`);
+		console.log(`Player succesfully deleted`);
 		res.json(player);
 		// was receiving token as undefined,
 		// used this to ensure it was showing up
@@ -28,3 +32,5 @@ export default async (req, res) => {
 		console.log(error);
 	}
 };
+
+// in sql, after deletion, rows are not cleared even tho they are empty (I think some option has to be used, maybe something called truncate)

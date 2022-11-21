@@ -33,10 +33,15 @@ Player.hasMany(PlayerSkill, {
 	// through: "players_skills",
 	as: "playerSkills",
 	timestamps: false,
-	foreignKey: false,
+	onDelete: "cascade",
+	onUpdate: "cascade",
 	// attributes: { exclude: ["playerSkillId"] },
 });
 
+PlayerSkill.belongsTo(Player, {
+	as: "playerMain",
+	timestamps: false,
+});
 // Player.hasMany(PlayerSkill);
 // PlayerSkill.belongsTo(Player);
 

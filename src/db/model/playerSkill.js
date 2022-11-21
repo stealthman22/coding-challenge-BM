@@ -5,6 +5,7 @@
 
 import Sequelize from "sequelize";
 import database from "../index";
+import Player from "./player";
 
 const PlayerSkill = database.define(
 	"playerSkill",
